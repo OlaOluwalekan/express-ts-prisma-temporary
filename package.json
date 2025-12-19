@@ -5,8 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc -p tsconfig.node.json",
-    "start": "node dist/server.js"
+    "build": "tsc -p tsconfig.node.json && npx prisma generate",
+    "start": "node dist/server.js",
+    "postinstall": "npx prisma generate"
   },
   "keywords": [],
   "author": "",
