@@ -2,7 +2,7 @@
   "name": "express-ts-prisma",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "dev": "nodemon",
     "build": "tsc -p tsconfig.node.json && npx prisma generate",
