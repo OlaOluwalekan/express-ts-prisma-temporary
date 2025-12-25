@@ -1,4 +1,6 @@
 import swaggerJsdoc, { Options } from 'swagger-jsdoc'
+import { userDocs } from '../docs/user.docs'
+import { healthDocs } from '../docs/health.docs'
 
 const options: Options = {
   definition: {
@@ -27,6 +29,7 @@ const options: Options = {
         description: 'Production server',
       },
     ],
+    paths: { ...userDocs, ...healthDocs },
     components: {
       schemas: {
         User: {
@@ -154,7 +157,7 @@ const options: Options = {
       },
     },
   },
-  apis: ['./src/routes/*.ts', './src/server.ts'], // Path to the API routes
+  apis: [], // Path to the API routes
 }
 
 export const swaggerSpec = swaggerJsdoc(options)

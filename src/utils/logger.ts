@@ -14,13 +14,21 @@ export const logger = winston.createLogger({
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize({ all: true }),
-        winston.format.printf(({ timestamp, level, message }) => {
-          return `${timestamp} [${level}]: ${message}
+        winston.format.printf(
+          ({ timestamp, level, message, label, ...meta }) => {
+            return `${timestamp} [${level}]: [${label}] : ${message} ${
+              Object.keys(meta).length ? JSON.stringify(meta) : ''
+            }
           `
-        })
+          }
+        )
       ),
     }),
     new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
     new winston.transports.File({ filename: 'logs/combined.log' }),
   ],
 })
+
+export const createLogger = (label: string) => {
+  return logger.child({ label })
+}

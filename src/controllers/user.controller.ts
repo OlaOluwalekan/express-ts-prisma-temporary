@@ -1,12 +1,15 @@
 import { Request, Response } from 'express'
 import * as userService from '../services/user.service'
-import { logger } from '../utils/logger'
+import { createLogger } from '../utils/logger'
+// import { logger } from '../utils/logger'
+
+const logger = createLogger('src/controllers/user.controller')
 
 export const getAllUsers = async (_: Request, res: Response): Promise<void> => {
   try {
     const users = await userService.getAllUsers()
 
-    logger.info(`Users ==> ${JSON.stringify(users)}`)
+    logger.info(users)
 
     res.status(200).json({
       status: 'success',

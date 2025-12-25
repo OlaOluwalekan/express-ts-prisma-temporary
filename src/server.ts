@@ -1,9 +1,12 @@
 import express from 'express'
 import morgan from 'morgan'
-import { logger } from './utils/logger'
+// import { logger } from './utils/logger'
 import swaggerUi from 'swagger-ui-express'
 import { swaggerSpec } from './config/swagger'
 import userRoutes from './routes/user.routes'
+import { createLogger } from './utils/logger'
+
+const logger = createLogger('src/server')
 
 const app = express()
 
@@ -49,21 +52,6 @@ app.get('/api/docs.json', (_, res) => {
   res.send(swaggerSpec)
 })
 
-/**
- * @swagger
- * /:
- *   get:
- *     summary: Health check endpoint
- *     tags: [Health]
- *     responses:
- *       200:
- *         description: API is running
- *         content:
- *           application/json:
- *             schema:
- *               type: string
- *               example: "Home"
- */
 app.get('/', (_, res) => {
   res.status(200).json('Home')
 })
